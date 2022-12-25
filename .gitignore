@@ -1,9 +1,8 @@
 .DS_Store
-node_modules
-/build
-/.svelte-kit
-/package
-../.env
+client/node_modules
+client/build
+client/.svelte-kit
+client/package
 .env.*
 !.env.example
 .vercel
@@ -11,4 +10,4 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .env
-/.idea
+.idea
