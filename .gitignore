@@ -3,7 +3,6 @@ client/node_modules
 client/build
 client/.svelte-kit
 client/package
-.env.*
 !.env.example
 .vercel
 .output
