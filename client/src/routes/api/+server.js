@@ -3,7 +3,7 @@ import {API_KEY} from "$env/static/private";
 
 export const GET = async ({ url, request }) => {
     if(request.headers.get('Authorization')  !== API_KEY) {
-        return new Response(JSON.stringify({message: 'Invalid credentials'}), { status: 401 })
+        return new Response(JSON.stringify({message: 'Invalid credentials'}), { status: 401 });
     }
     const limit = Number(url.searchParams.get('limit') ?? '10');
     const skip = Number(url.searchParams.get('skip') ?? '0');
@@ -13,18 +13,24 @@ export const GET = async ({ url, request }) => {
             return rows;
         });
 
-    return new Response(JSON.stringify(results), {status: 200})
+    return new Response(JSON.stringify(results), { status: 200 });
 }
 
 export const POST = async ({ request }) => {
     if(request.headers.get('Authorization')  !== API_KEY) {
-        return new Response(JSON.stringify({message: 'Invalid credentials'}), { status: 401 })
+        return new Response(JSON.stringify({message: 'Invalid credentials'}), { status: 401 });
     }
+
     const body = await request.json();
+    
+
+    if(!body.name) {
+        return new Response(JSON.stringify({message: 'Missing name'}), { status: 400 });
+    }
 
     await db.query(`INSERT INTO mytable (ID, NAME) VALUES (${body.id ? body.id : null}, '${body.name}')`);
 
-    return new Response(JSON.stringify({message: 'Success'}), { status: 201 })
+    return new Response(JSON.stringify({message: 'Success'}), { status: 201 });
 }
 
 export const DELETE = async ({ request }) => {

@@ -1,4 +1,4 @@
-import { mysqlconn as db } from "$lib/db/mysql";
+import { mysqlconn as db } from "$lib/db/mysql.js";
 import {API_KEY} from "$env/static/private";
 
 export const GET = async ({ params, request }) => {
