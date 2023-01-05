@@ -7,5 +7,6 @@
 {#if code === 404}
     <div class="error">
         <h1 class="error-code">404</h1>
+        <h1>Page not found</h1>
     </div>
 {/if}

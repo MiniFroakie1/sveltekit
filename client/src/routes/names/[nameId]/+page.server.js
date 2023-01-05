@@ -22,3 +22,24 @@ export const load = async ({ fetch, params }) => {
         data: Data[0]
     }
 }
+
+/** @type {import('./types').Actions} */
+export const actions = {
+    default: async ({ fetch, params }) => {
+        await fetch('/api', {
+            method: 'DELETE',
+            body: JSON.stringify({
+                id: params.nameId
+            }),
+            headers: {
+                Authorization: API_KEY
+            }
+        });
+        await fetch('/api', {
+            method: 'PATCH',
+            headers: {
+                Authorization: API_KEY
+            }
+        });
+    }
+}

@@ -1,12 +1,24 @@
-table, th, td {
+table {
+    border-spacing: 0 5px;
+}
+
+table.api, .api th, .api td {
     border: #aaa 2px solid;
     border-collapse: collapse;
 }
 
-table {
+table.api {
     margin-top: 5px;
 }
 
 th, td {
     padding: 2px;
+}
+
+form {
+    margin-top: 10px;
+}
+
+.red-error {
+    color: #cc0000;
 }
