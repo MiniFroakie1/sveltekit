@@ -1,4 +1,3 @@
-import { API_KEY } from '$env/static/private';
 import { fail } from "@sveltejs/kit";
 
 export const load = ({ fetch }) => {
@@ -6,7 +5,7 @@ export const load = ({ fetch }) => {
         const res = await fetch(`/api`, {
             method: 'GET',
             headers: {
-                Authorization: API_KEY
+                Authorization: process.env.API_KEY
             }
         });
         return await res.json();
@@ -32,7 +31,7 @@ export const actions = {
                 name: name
             }),
             headers: {
-                Authorization: API_KEY
+                Authorization: process.env.API_KEY
             }
         });
     }

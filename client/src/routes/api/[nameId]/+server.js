@@ -1,8 +1,7 @@
 import { mysqlconn as db } from "$lib/db/mysql.js";
-import {API_KEY} from "$env/static/private";
 
 export const GET = async ({ params, request }) => {
-    if(request.headers.get('Authorization')  !== API_KEY) {
+    if(request.headers.get('Authorization')  !== process.env.API_KEY) {
         return new Response(JSON.stringify({message: 'Invalid credentials'}), { status: 401 })
     }
     // noinspection JSUnresolvedFunction

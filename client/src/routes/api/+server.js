@@ -1,8 +1,7 @@
 import { mysqlconn as db } from "$lib/db/mysql";
-import {API_KEY} from "$env/static/private";
 
 export const GET = async ({ url, request }) => {
-    if(request.headers.get('Authorization')  !== API_KEY) {
+    if(request.headers.get('Authorization')  !== process.env.API_KEY) {
         return new Response(JSON.stringify({message: 'Invalid credentials'}), { status: 401 });
     }
     const limit = Number(url.searchParams.get('limit') ?? '10');
@@ -17,12 +16,12 @@ export const GET = async ({ url, request }) => {
 }
 
 export const POST = async ({ request }) => {
-    if(request.headers.get('Authorization')  !== API_KEY) {
+    if(request.headers.get('Authorization')  !== process.env.API_KEY) {
         return new Response(JSON.stringify({message: 'Invalid credentials'}), { status: 401 });
     }
 
     const body = await request.json();
-    
+
 
     if(!body.name) {
         return new Response(JSON.stringify({message: 'Missing name'}), { status: 400 });
@@ -34,7 +33,7 @@ export const POST = async ({ request }) => {
 }
 
 export const DELETE = async ({ request }) => {
-    if(request.headers.get('Authorization')  !== API_KEY) {
+    if(request.headers.get('Authorization')  !== process.env.API_KEY) {
         return new Response(JSON.stringify({message: 'Invalid credentials'}), { status: 401 })
     }
     const body = await request.json();
@@ -45,7 +44,7 @@ export const DELETE = async ({ request }) => {
 }
 
 export const PATCH = async ({ request }) => {
-    if(request.headers.get('Authorization')  !== API_KEY) {
+    if(request.headers.get('Authorization')  !== process.env.API_KEY) {
         return new Response(JSON.stringify({message: 'Invalid credentials'}), { status: 401 })
     }
     db.query('SET @num := 0');

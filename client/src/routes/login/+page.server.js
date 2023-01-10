@@ -1,4 +1,3 @@
-import { API_KEY } from "$env/static/private";
 import { compare } from "$lib/hashing/hash.js";
 import {fail, redirect} from "@sveltejs/kit";
 
@@ -15,7 +14,7 @@ export const actions = {
                 email: email
             }),
             headers: {
-                Authorization: API_KEY
+                Authorization: process.env.API_KEY
             }
         });
 

@@ -1,11 +1,10 @@
-import { API_KEY } from "$env/static/private";
 import { error } from "@sveltejs/kit";
 
 export const load = async ({ fetch, params }) => {
     const res = await fetch(`/api/${params.nameId}`, {
         method: 'GET',
         headers: {
-            Authorization: API_KEY
+            Authorization: process.env.API_KEY
         }
     });
 
@@ -32,13 +31,13 @@ export const actions = {
                 id: params.nameId
             }),
             headers: {
-                Authorization: API_KEY
+                Authorization: process.env.API_KEY
             }
         });
         await fetch('/api', {
             method: 'PATCH',
             headers: {
-                Authorization: API_KEY
+                Authorization: process.env.API_KEY
             }
         });
     }
